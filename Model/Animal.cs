@@ -96,10 +96,10 @@ namespace Clínica_Exemplo.Model
 
                     cn.CommandText = "INSERT INTO Proprietario([nome]) VALUES(@nome_prop)";
 
-                    cn.Parameters.AddWithValue("nome", nome_dono);
+                    cn.Parameters.AddWithValue("@nome_prop", nome_dono);
 
-                    cn.CommandText = "INSERT INTO Animais ([nome_animal],[sexo],[quilos],[raca],[especie],[temperamento],[observacao],[id_prop]) " +
-                        "VALUES (@nome, @sexo, @quilos, @raca, @especie, @temperamento, @observacao,)";
+                    cn.CommandText = "INSERT INTO Animais ([nome],[sexo],[quilos],[raca],[especie],[temperamento],[observacao],[dono_id]) " +
+                        "VALUES (@nome, @sexo, @quilos, @raca, @especie, @temperamento, @observacao, @id_dono)";
 
                     cn.Parameters.AddWithValue("@nome", nomePet);
                     cn.Parameters.AddWithValue("@sexo", sexo);
@@ -108,13 +108,18 @@ namespace Clínica_Exemplo.Model
                     cn.Parameters.AddWithValue("@especie", especie);
                     cn.Parameters.AddWithValue("@temperamento", temp);
                     cn.Parameters.AddWithValue("@observacao", obs);
-                    cn.Parameters.AddWithValue("@id_prop", obs);
+                    cn.Parameters.AddWithValue("@id_dono", 1);
 
                     // Abrindo uma outra conexção
                     cn.Connection = con;
 
                     // retornando o execute 
                     cn.ExecuteNonQuery();
+                    if (cn.ExecuteNonQuery() != null)
+                    {
+                        MessageBox.Show("Cadastro realizado com sucesso.","Sucesso");
+                    }
+
                 }
                 catch (Exception ex)
                 {
