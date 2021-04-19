@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Clínica_Exemplo.Model
 {
     class Animal
     {
-        Dono dono = new Dono();
+        readonly Dono dono = new Dono();
         private int id_pet;        
         private string raca_pet;
         private string nome_pet;
         private string sexo;
         private string especie;
-        private int peso;
+        private double peso;
         private string temperamento;
         private string observacao;
         private int id_dono;
@@ -29,7 +30,7 @@ namespace Clínica_Exemplo.Model
 
         public string Especie {  get => especie; set => especie = value; }
 
-        public int Peso {  get => peso; set => peso = value; }
+        public double Peso {  get => peso; set => peso = value; }
 
         public string Temperamento {  get => temperamento; set => temperamento = value; }
 
@@ -79,37 +80,51 @@ namespace Clínica_Exemplo.Model
             }
         }
         
-        public int Inserir()
+        public void Inserir(string nomePet, double peso, string sexo, string raca, string especie, string temp, string obs, string nome_dono)
         {
             // instanciando sql connection para abrir uma conexão
             using (SqlConnection con = new SqlConnection())
             {
-                con.ConnectionString = Properties.Settings.Default.banco;
-                SqlCommand cn = new SqlCommand();
-                cn.CommandType = CommandType.Text;
+                try
+                {
+                    con.ConnectionString = Properties.Settings.Default.banco;
+                    SqlCommand cn = new SqlCommand();
+                    cn.CommandType = CommandType.Text;
 
-                // abrindo conexão com o banco                
-                con.Open();
-                cn.CommandText = "INSERT INTO Animais ([nome_animal],[sexo],[quilos],[raca],[especie],[temperamento],[observacao]) "+
-                    "VALUES (@nome, @sexo, @quilos, @raca, @especie, @temperamento, @observacao)";                
+                    // abrindo conexão com o banco                
+                    con.Open();
 
-                cn.Parameters.Add("nome", SqlDbType.VarChar).Value = Nome_pet;
-                cn.Parameters.Add("sexo", SqlDbType.VarChar).Value = Sexo;
-                cn.Parameters.Add("quilos", SqlDbType.VarChar).Value = Peso;
-                cn.Parameters.Add("raca", SqlDbType.VarChar).Value = Raca;
-                cn.Parameters.Add("especie", SqlDbType.VarChar).Value = Especie;
-                cn.Parameters.Add("temperamento", SqlDbType.VarChar).Value = Temperamento;
-                cn.Parameters.Add("observacao", SqlDbType.VarChar).Value = Observacao;
+                    cn.CommandText = "INSERT INTO Proprietario([nome]) VALUES(@nome_prop)";
 
-                cn.CommandText = "INSERT INTO Proprietario([nome],[animal_id]) VALUES(@nome_prop, @anima_id)";
+                    cn.Parameters.AddWithValue("nome", nome_dono);
+
+                    cn.CommandText = "INSERT INTO Animais ([nome_animal],[sexo],[quilos],[raca],[especie],[temperamento],[observacao],[id_prop]) " +
+                        "VALUES (@nome, @sexo, @quilos, @raca, @especie, @temperamento, @observacao,)";
+
+                    cn.Parameters.AddWithValue("@nome", nomePet);
+                    cn.Parameters.AddWithValue("@sexo", sexo);
+                    cn.Parameters.AddWithValue("@quilos", Convert.ToInt32(peso));
+                    cn.Parameters.AddWithValue("@raca", raca);
+                    cn.Parameters.AddWithValue("@especie", especie);
+                    cn.Parameters.AddWithValue("@temperamento", temp);
+                    cn.Parameters.AddWithValue("@observacao", obs);
+                    cn.Parameters.AddWithValue("@id_prop", obs);
+
+                    // Abrindo uma outra conexção
+                    cn.Connection = con;
+
+                    // retornando o execute 
+                    cn.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
                 
-                cn.Parameters.Add("nome", SqlDbType.VarChar).Value = dono.Nome;
-                cn.Parameters.Add("sexo", SqlDbType.VarChar).Value = dono.Id_pet;
-                // Abrindo uma outra conexção
-                cn.Connection = con;
-
-                // retornando o execute 
-                return cn.ExecuteNonQuery();
             }
         }
 

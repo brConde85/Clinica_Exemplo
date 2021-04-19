@@ -161,14 +161,14 @@ namespace Clínica_Exemplo
             this.label2.Location = new System.Drawing.Point(51, -6);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(208, 77);
+            this.label2.Size = new System.Drawing.Size(139, 52);
             this.label2.TabIndex = 1;
             this.label2.Text = "MENU";
             // 
             // pictureBox4
             // 
             this.pictureBox4.Image = global::Clínica_Exemplo.Properties.Resources.cat;
-            this.pictureBox4.Location = new System.Drawing.Point(51, 549);
+            this.pictureBox4.Location = new System.Drawing.Point(51, 590);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(189, 173);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -194,7 +194,7 @@ namespace Clínica_Exemplo
             this.label1.Font = new System.Drawing.Font("Segoe UI", 40F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(25, 57);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(467, 106);
+            this.label1.Size = new System.Drawing.Size(315, 72);
             this.label1.TabIndex = 4;
             this.label1.Text = "Bem-Vindo";
             // 
@@ -206,19 +206,20 @@ namespace Clínica_Exemplo
             this.label_texto1.ForeColor = System.Drawing.Color.Teal;
             this.label_texto1.Location = new System.Drawing.Point(51, 184);
             this.label_texto1.Name = "label_texto1";
-            this.label_texto1.Size = new System.Drawing.Size(392, 50);
+            this.label_texto1.Size = new System.Drawing.Size(269, 33);
             this.label_texto1.TabIndex = 2;
             this.label_texto1.Text = "a Clínica Exemplo";
             // 
             // Form_Principal
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1510, 749);
+            this.ClientSize = new System.Drawing.Size(1524, 815);
             this.Controls.Add(this.pan_inicial);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form_Principal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Clínica Exemplo";
             this.Load += new System.EventHandler(this.Form_Principal_Load);
             this.panel1.ResumeLayout(false);

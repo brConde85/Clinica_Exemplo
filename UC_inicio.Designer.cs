@@ -44,7 +44,7 @@ namespace Clínica_Exemplo
             this.label_texto1.ForeColor = System.Drawing.Color.Teal;
             this.label_texto1.Location = new System.Drawing.Point(51, 184);
             this.label_texto1.Name = "label_texto1";
-            this.label_texto1.Size = new System.Drawing.Size(269, 33);
+            this.label_texto1.Size = new System.Drawing.Size(392, 50);
             this.label_texto1.TabIndex = 2;
             this.label_texto1.Text = "a Clínica Exemplo";
             // 
@@ -58,15 +58,15 @@ namespace Clínica_Exemplo
             this.pan_inicial.Controls.Add(this.label_texto1);
             this.pan_inicial.Location = new System.Drawing.Point(0, -1);
             this.pan_inicial.Name = "pan_inicial";
-            this.pan_inicial.Size = new System.Drawing.Size(1220, 756);
+            this.pan_inicial.Size = new System.Drawing.Size(1220, 813);
             this.pan_inicial.TabIndex = 8;
             // 
             // uC_site1
             // 
-            this.uC_site1.Location = new System.Drawing.Point(844, 636);
+            this.uC_site1.Location = new System.Drawing.Point(800, 649);
             this.uC_site1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uC_site1.Name = "uC_site1";
-            this.uC_site1.Size = new System.Drawing.Size(374, 104);
+            this.uC_site1.Size = new System.Drawing.Size(336, 104);
             this.uC_site1.TabIndex = 4;
             // 
             // label1
@@ -76,7 +76,7 @@ namespace Clínica_Exemplo
             this.label1.Font = new System.Drawing.Font("Segoe UI", 40F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(25, 57);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(315, 72);
+            this.label1.Size = new System.Drawing.Size(467, 106);
             this.label1.TabIndex = 3;
             this.label1.Text = "Bem-Vindo";
             // 
