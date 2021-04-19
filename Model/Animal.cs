@@ -115,11 +115,8 @@ namespace Clínica_Exemplo.Model
 
                     // retornando o execute 
                     cn.ExecuteNonQuery();
-                    if (cn.ExecuteNonQuery() != null)
-                    {
-                        MessageBox.Show("Cadastro realizado com sucesso.","Sucesso");
-                    }
-
+                    
+                    MessageBox.Show("Cadastro realizado com sucesso.","Sucesso");
                 }
                 catch (Exception ex)
                 {
@@ -128,8 +125,7 @@ namespace Clínica_Exemplo.Model
                 finally
                 {
                     con.Close();
-                }
-                
+                }                
             }
         }
 
@@ -154,22 +150,35 @@ namespace Clínica_Exemplo.Model
         {
             using (SqlConnection con = new SqlConnection())
             {
-                con.ConnectionString = Properties.Settings.Default.banco;
-                SqlCommand cn = new SqlCommand();
-                cn.CommandType = CommandType.Text;
+                try
+                {
+                    con.ConnectionString = Properties.Settings.Default.banco;
+                    SqlCommand cn = new SqlCommand();
+                    cn.CommandType = CommandType.Text;
 
-                con.Open();
+                    con.Open();
 
-                cn.CommandText = "DELETE FROM Proprietario WHERE " +
-                    "dono_id = @id_dono";
-                cn.Parameters.Add("id_dono", SqlDbType.Int).Value = Id_dono;
+                    cn.CommandText = "DELETE FROM Proprietario WHERE " +
+                        "dono_id = @id_dono";
+                    cn.Parameters.Add("id_dono", SqlDbType.Int).Value = value;
 
-                cn.CommandText = "DELETE FROM Animais WHERE "+
-                    "animal_id = @id_pet";
-                cn.Parameters.Add("id_pet", SqlDbType.Int).Value = Id_pet;
-                cn.Connection = con;
+                    cn.CommandText = "DELETE FROM Animais WHERE " +
+                        "animal_id = @id_pet";
+                    cn.Parameters.Add("id_pet", SqlDbType.Int).Value = value;
+                    cn.Connection = con;
 
-                return cn.ExecuteNonQuery();
+                    return cn.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                
+                finally
+                {
+                    con.Close();
+                }
+                return 0;
             }
         }
     }

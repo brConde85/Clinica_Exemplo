@@ -21,7 +21,8 @@ namespace Clínica_Exemplo
         }
 
         private void UC_localizar_Load(object sender, EventArgs e)
-        {            
+        {
+            dataGrid_pet.ClearSelection();
             try
             {   
                 var lista = animal.ListarPet();
