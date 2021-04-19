@@ -95,7 +95,7 @@ namespace Clínica_Exemplo
             this.temperamento,
             this.observacao,
             this.dono_id});
-            this.dataGrid_pet.Location = new System.Drawing.Point(42, 169);
+            this.dataGrid_pet.Location = new System.Drawing.Point(53, 147);
             this.dataGrid_pet.Name = "dataGrid_pet";
             this.dataGrid_pet.RowHeadersWidth = 62;
             this.dataGrid_pet.RowTemplate.Height = 25;

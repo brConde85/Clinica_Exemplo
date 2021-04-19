@@ -47,7 +47,7 @@ namespace Clínica_Exemplo.Model
 
                 var comando = con.CreateCommand();
                 comando.CommandText = "SELECT a.*, p.dono_id, p.nome AS nomeProprietario "+
-                    "From Proprietario p, Animais a ORDER BY nomeProprietario";
+                    "From Proprietario p, Animais a WHERE a.dono_id = p.dono_id ORDER BY nomeProprietario";
                 
                 var reader =  comando.ExecuteReader();
                 if (reader.HasRows)
@@ -90,12 +90,12 @@ namespace Clínica_Exemplo.Model
                     // abrindo conexão com o banco                
                     con.Open();
 
-                    cn.CommandText = "INSERT INTO Proprietario([nome]) VALUES(@nome_prop)";
+                    cn.CommandText = "INSERT INTO Proprietario([nome]) VALUES(@nome_prop);";
 
                     cn.Parameters.AddWithValue("@nome_prop", nome_dono);
 
                     cn.CommandText = "INSERT INTO Animais ([nome],[sexo],[quilos],[raca],[especie],[temperamento],[observacao],[dono_id]) " +
-                        "VALUES (@nome, @sexo, @quilos, @raca, @especie, @temperamento, @observacao, @id_dono)";
+                        "VALUES (@nome, @sexo, @quilos, @raca, @especie, @temperamento, @observacao, (select IDENT_CURRENT('Proprietario')));";
 
                     cn.Parameters.AddWithValue("@nome", nomePet);
                     cn.Parameters.AddWithValue("@sexo", sexo);

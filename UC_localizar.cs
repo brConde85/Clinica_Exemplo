@@ -21,13 +21,13 @@ namespace Clínica_Exemplo
         }
 
         private void UC_localizar_Load(object sender, EventArgs e)
-        {
-            dataGrid_pet.ClearSelection();
+        {     
             try
             {   
                 var lista = animal.ListarPet();
                 for(var i = 0; i < lista.Count; i++ )
-                {                    
+                {
+                    dataGrid_pet.Rows.Add();
                     dataGrid_pet.Rows[i].Cells["animal_id"].Value = Convert.ToString(lista[i].Id_pet);                    
                     dataGrid_pet.Rows[i].Cells["nome"].Value = Convert.ToString(lista[i].Nome_pet);
                     dataGrid_pet.Rows[i].Cells["sexo"].Value = Convert.ToString(lista[i].Sexo);
