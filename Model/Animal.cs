@@ -46,7 +46,8 @@ namespace Clínica_Exemplo.Model
                 con.Open();
 
                 var comando = con.CreateCommand();
-                comando.CommandText = "SELECT a.*, p.dono_id, p.nome AS nomeProprietario From Proprietario p, Animais a ORDER BY nomeProprietario";
+                comando.CommandText = "SELECT a.*, p.dono_id, p.nome AS nomeProprietario "+
+                    "From Proprietario p, Animais a ORDER BY nomeProprietario";
                 
                 var reader =  comando.ExecuteReader();
                 if (reader.HasRows)
@@ -65,11 +66,6 @@ namespace Clínica_Exemplo.Model
                             temperamento = reader.GetString(6),
                             observacao = reader.GetString(7),
                             id_dono = reader.GetInt32(8)
-                            //dono = new Dono
-                            //{
-                            //    Id = reader.GetInt32(9),
-                            //    Nome = reader.GetString(10),
-                            //}
                         };
 
                         lista.Add(animal);
@@ -109,11 +105,9 @@ namespace Clínica_Exemplo.Model
                     cn.Parameters.AddWithValue("@temperamento", temp);
                     cn.Parameters.AddWithValue("@observacao", obs);
                     cn.Parameters.AddWithValue("@id_dono", 1);
-
-                    // Abrindo uma outra conexção
+                    
                     cn.Connection = con;
-
-                    // retornando o execute 
+                    
                     cn.ExecuteNonQuery();
                     
                     MessageBox.Show("Cadastro realizado com sucesso.","Sucesso");
@@ -129,7 +123,7 @@ namespace Clínica_Exemplo.Model
             }
         }
 
-        public int Atualizar(string status)
+        public int Atualizar(int value)
         {
             using (SqlConnection con = new SqlConnection())
             {
@@ -138,7 +132,7 @@ namespace Clínica_Exemplo.Model
                 cn.CommandType = CommandType.Text;
 
                 con.Open();
-                cn.CommandText = "UPDATE Animal a SET animal_id = '" + Id_pet + "' " +
+                cn.CommandText = "UPDATE Animal a SET animal_id = '" + value + "' " +
                     "WHERE animal_id = @id_pet";
                 cn.Parameters.Add("codigo", SqlDbType.Int).Value = Id_pet;
                 cn.Connection = con;
